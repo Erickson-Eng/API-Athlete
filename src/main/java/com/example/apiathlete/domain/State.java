@@ -10,24 +10,25 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Table(name = "city")
+@Table(name = "state")
 @Entity
 @Getter
 @Setter
 @RequiredArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
-public class City implements Serializable {
-    private static final long serialVersionUID = 5719986951682418776L;
+public class State implements Serializable {
+    private static final long serialVersionUID = -907927202941525441L;
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String cityName;
+    private String stateName;
+    private String uf;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        City city = (City) o;
-        return Objects.equals(id, city.id);
+        State state = (State) o;
+        return Objects.equals(id, state.id);
     }
 
     @Override
