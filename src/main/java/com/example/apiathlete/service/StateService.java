@@ -46,4 +46,13 @@ public class StateService {
         }
 
     }
+    public State update(Integer id, State state){
+        State newState = findById(id);
+        updateData(newState, state);
+        return repository.save(newState);
+    }
+    private void updateData(State newState, State state) {
+        newState.setStateName(state.getStateName());
+        newState.setUf(state.getUf());
+    }
 }
