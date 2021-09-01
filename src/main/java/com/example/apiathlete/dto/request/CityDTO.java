@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -18,6 +19,7 @@ public class CityDTO  {
     @NotEmpty
     private String cityName;
     @NotNull
+    @Valid
     private StateDTO state;
 
 }
