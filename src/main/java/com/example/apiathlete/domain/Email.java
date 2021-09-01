@@ -20,6 +20,7 @@ public class Email implements Serializable {
     private static final long serialVersionUID = 667011049015452582L;
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false)
     private String addressEmail;
 
     @Override
