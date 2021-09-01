@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,10 @@ import java.util.List;
 public class StateDTO {
 
     private Integer id;
+    @NotEmpty
     private String stateName;
+    @NotEmpty
+    @Size(max = 2, min = 2)
     private String uf;
     private List<CityDTO> cities = new ArrayList<>();
 
