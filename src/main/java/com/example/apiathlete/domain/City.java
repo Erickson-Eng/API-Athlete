@@ -21,6 +21,8 @@ public class City implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String cityName;
+    @ManyToOne
+    private State state;
 
     @Override
     public boolean equals(Object o) {

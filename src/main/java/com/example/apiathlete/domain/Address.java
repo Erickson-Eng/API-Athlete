@@ -23,6 +23,8 @@ public class Address implements Serializable {
     private String streetName;
     private String complement;
     private String cep;
+    @OneToOne
+    private City city;
 
     @Override
     public boolean equals(Object o) {

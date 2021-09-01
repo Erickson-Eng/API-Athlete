@@ -8,9 +8,10 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-@Table(name = "state")
 @Entity
 @Getter
 @Setter
@@ -22,7 +23,8 @@ public class State implements Serializable {
     private Integer id;
     private String stateName;
     private String uf;
-
+    @OneToMany(mappedBy = "state")
+    private List<City> cities = new ArrayList<>();
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
