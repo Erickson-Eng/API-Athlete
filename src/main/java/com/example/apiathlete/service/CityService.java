@@ -1,7 +1,6 @@
 package com.example.apiathlete.service;
 
 import com.example.apiathlete.domain.City;
-import com.example.apiathlete.domain.State;
 import com.example.apiathlete.repository.CityRepository;
 import com.example.apiathlete.service.exceptions.DataIntegrityViolationException;
 import com.example.apiathlete.service.exceptions.ObjectNotFoundException;
