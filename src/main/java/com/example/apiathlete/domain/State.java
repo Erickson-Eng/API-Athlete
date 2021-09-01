@@ -21,7 +21,9 @@ public class State implements Serializable {
     private static final long serialVersionUID = -907927202941525441L;
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false)
     private String stateName;
+    @Column(length = 2, nullable = false)
     private String uf;
     @OneToMany(mappedBy = "state")
     private List<City> cities = new ArrayList<>();

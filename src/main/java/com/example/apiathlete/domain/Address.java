@@ -20,8 +20,10 @@ public class Address implements Serializable {
     private static final long serialVersionUID = 158918561727645860L;
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false)
     private String streetName;
     private String complement;
+    @Column(nullable = false)
     private String cep;
     @OneToOne
     private City city;

@@ -20,6 +20,7 @@ public class City implements Serializable {
     private static final long serialVersionUID = 5719986951682418776L;
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false)
     private String cityName;
     @ManyToOne
     private State state;
