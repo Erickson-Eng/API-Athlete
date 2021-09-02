@@ -2,8 +2,8 @@ package com.example.apiathlete.service;
 
 
 import com.example.apiathlete.domain.Athlete;
+import com.example.apiathlete.dto.mapper.AthleteMapper;
 import com.example.apiathlete.repository.AthleteRepository;
-import com.example.apiathlete.service.exceptions.DataIntegrityViolationException;
 import com.example.apiathlete.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,12 +33,7 @@ public class AthleteService {
     }
 
     public Athlete insert(Athlete obj){
-        try {
-            return repository.save(obj);
-        }
-        catch (DataIntegrityViolationException e){
-            throw new DataIntegrityViolationException("Não é possivel inserir um novo atleta com dados nulos");
-        }
+       return repository.save(obj);
     }
 
     public void delete(Integer id){

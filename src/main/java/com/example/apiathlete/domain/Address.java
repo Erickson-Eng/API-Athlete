@@ -10,7 +10,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Table(name = "address")
 @Entity
 @Getter
 @Setter
@@ -25,7 +24,8 @@ public class Address implements Serializable {
     private String complement;
     @Column(nullable = false)
     private String cep;
-    @OneToOne
+    @JoinColumn
+    @OneToOne(cascade = {CascadeType.ALL})
     private City city;
 
     @Override

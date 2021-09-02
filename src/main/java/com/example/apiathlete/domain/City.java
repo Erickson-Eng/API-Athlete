@@ -10,7 +10,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Table(name = "city")
 @Entity
 @Getter
 @Setter
@@ -22,7 +21,8 @@ public class City implements Serializable {
     private Integer id;
     @Column(nullable = false)
     private String cityName;
-    @ManyToOne
+    @JoinColumn
+    @ManyToOne(cascade = {CascadeType.ALL})
     private State state;
 
     @Override
