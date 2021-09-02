@@ -6,9 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Entity;
-import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass
+@Entity
 @Getter
 @Setter
 @RequiredArgsConstructor
