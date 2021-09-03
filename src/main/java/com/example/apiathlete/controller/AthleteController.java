@@ -1,6 +1,7 @@
 package com.example.apiathlete.controller;
 
 import com.example.apiathlete.domain.Athlete;
+import com.example.apiathlete.dto.request.AthleteDTO;
 import com.example.apiathlete.service.AthleteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/v1/athlete")
 public class AthleteController {
 
-    private AthleteService service;
+    private final AthleteService service;
 
     @Autowired
     public AthleteController(AthleteService service) {
@@ -22,7 +23,7 @@ public class AthleteController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody Athlete obj){
+    public ResponseEntity<Void> insert(@RequestBody AthleteDTO obj){
         service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -38,14 +39,14 @@ public class AthleteController {
         List<Athlete> athleteList = service.findAll();
         return ResponseEntity.ok().body(athleteList);
     }
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id){
-        service.delete(id);
-        return ResponseEntity.noContent().build();
-    }
-    @PutMapping(path = "/{id}")
-    public ResponseEntity<Athlete> update(@PathVariable Integer id, @RequestBody Athlete obj){
-        obj = service.update(id, obj);
-        return ResponseEntity.ok().body(obj);
-    }
+//    @DeleteMapping(path = "/{id}")
+//    public ResponseEntity<Void> delete(@PathVariable Integer id){
+//        service.delete(id);
+//        return ResponseEntity.noContent().build();
+//    }
+//    @PutMapping(path = "/{id}")
+//    public ResponseEntity<Athlete> update(@PathVariable Integer id, @RequestBody Athlete obj){
+//        obj = service.update(id, obj);
+//        return ResponseEntity.ok().body(obj);
+//    }
 }

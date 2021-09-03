@@ -2,8 +2,11 @@ package com.example.apiathlete.service;
 
 
 import com.example.apiathlete.domain.Athlete;
+import com.example.apiathlete.dto.mapper.AthleteMapper;
+import com.example.apiathlete.dto.request.AthleteDTO;
 import com.example.apiathlete.repository.AthleteRepository;
 import com.example.apiathlete.service.exceptions.ObjectNotFoundException;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,14 +14,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AthleteService {
 
-    private AthleteRepository repository;
+    private final AthleteRepository repository;
 
-    @Autowired
-    public AthleteService(AthleteRepository repository) {
-        this.repository = repository;
-    }
+    private final AthleteMapper mapper;
+
 
     public Athlete findById(Integer id){
         Optional<Athlete> obj = repository.findById(id);
@@ -31,24 +33,25 @@ public class AthleteService {
         return repository.findAll();
     }
 
-    public void insert(Athlete obj){
-        repository.save(obj);
+    public void insert(AthleteDTO obj){
+        Athlete athlete = mapper.toModel(obj);
+        repository.save(athlete);
     }
 
-    public void delete(Integer id){
-        findById(id);
-        repository.deleteById(id);
-    }
-
-    public Athlete update(Integer id, Athlete obj){
-        Athlete newObj = findById(id);
-        updateData(newObj, obj);
-        return repository.save(newObj);
-    }
-    private void updateData(Athlete newObj, Athlete obj) {
-        newObj.setFirstName(obj.getFirstName());
-        newObj.setLastName(obj.getLastName());
-        newObj.setHeight(obj.getHeight());
-        newObj.setWeight(obj.getWeight());
-    }
+//    public void delete(Integer id){
+//        findById(id);
+//        repository.deleteById(id);
+//    }
+//
+//    public Athlete update(Integer id, Athlete obj){
+//        Athlete newObj = findById(id);
+//        updateData(newObj, obj);
+//        return repository.save(newObj);
+//    }
+//    private void updateData(Athlete newObj, Athlete obj) {
+//        newObj.setFirstName(obj.getFirstName());
+//        newObj.setLastName(obj.getLastName());
+//        newObj.setHeight(obj.getHeight());
+//        newObj.setWeight(obj.getWeight());
+//    }
 }

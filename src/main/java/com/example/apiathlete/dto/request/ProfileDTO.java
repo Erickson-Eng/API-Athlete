@@ -24,12 +24,12 @@ public class ProfileDTO {
     @Size(min = 2, max = 70, message = "O nome deve conter entre 2 a 70 caracteres")
     private String lastName;
 
-    @Valid
-    @NotNull
+//    @Valid
+//    @NotNull
     private EmailDTO email;
 
-    @Valid
-    @NotNull
+//    @Valid
+//    @NotNull
     private AddressDTO address;
 
 }
