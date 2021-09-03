@@ -2,8 +2,11 @@ package com.example.apiathlete.service;
 
 
 import com.example.apiathlete.domain.Athlete;
+import com.example.apiathlete.dto.mapper.AthleteMapper;
+import com.example.apiathlete.dto.request.AthleteDTO;
 import com.example.apiathlete.repository.AthleteRepository;
 import com.example.apiathlete.service.exceptions.ObjectNotFoundException;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,19 +14,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AthleteService {
 
     private AthleteRepository repository;
 
-    @Autowired
-    public AthleteService(AthleteRepository repository) {
-        this.repository = repository;
-    }
-
     public Athlete findById(Integer id){
         Optional<Athlete> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
-                "Atleta não encontrado! Id: "+ id + Athlete.class.getName()
+                "Atleta não encontrado! Id: "+ id
         ));
     }
 
