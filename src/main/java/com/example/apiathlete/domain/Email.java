@@ -6,11 +6,13 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@Table(name = "email")
 @Getter
 @Setter
 @RequiredArgsConstructor

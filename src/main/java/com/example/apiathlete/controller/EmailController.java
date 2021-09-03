@@ -1,7 +1,8 @@
 package com.example.apiathlete.controller;
 
 import com.example.apiathlete.domain.Athlete;
-import com.example.apiathlete.service.AthleteService;
+import com.example.apiathlete.domain.Email;
+import com.example.apiathlete.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,34 +10,33 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-
 @RestController
-@RequestMapping("/api/v1/athlete")
-public class AthleteController {
+@RequestMapping("/api/v1/email")
+public class EmailController {
 
-    private AthleteService service;
+    private EmailService service;
 
     @Autowired
-    public AthleteController(AthleteService service) {
+    public EmailController(EmailService service) {
         this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody Athlete obj){
+    public ResponseEntity<Void> insert(@RequestBody Email obj){
         service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Athlete> findById(@PathVariable Integer id){
-        Athlete obj = service.findById(id);
+    public ResponseEntity<Email> findById(@PathVariable Integer id){
+        Email obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
     @GetMapping
-    public ResponseEntity<List<Athlete>> findAll(){
-        List<Athlete> athleteList = service.findAll();
-        return ResponseEntity.ok().body(athleteList);
+    public ResponseEntity<List<Email>> findAll(){
+        List<Email> objList = service.findAll();
+        return ResponseEntity.ok().body(objList);
     }
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
@@ -44,7 +44,7 @@ public class AthleteController {
         return ResponseEntity.noContent().build();
     }
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Athlete> update(@PathVariable Integer id, @RequestBody Athlete obj){
+    public ResponseEntity<Email> update(@PathVariable Integer id, @RequestBody Email obj){
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }

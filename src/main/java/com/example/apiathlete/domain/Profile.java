@@ -3,7 +3,6 @@ package com.example.apiathlete.domain;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -14,7 +13,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@ToString(onlyExplicitlyIncluded = true)
 @Inheritance( strategy = InheritanceType.TABLE_PER_CLASS)
 public class Profile implements Serializable {
     private static final long serialVersionUID = 7663551134425055595L;

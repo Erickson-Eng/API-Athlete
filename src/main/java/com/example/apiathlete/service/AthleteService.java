@@ -2,7 +2,6 @@ package com.example.apiathlete.service;
 
 
 import com.example.apiathlete.domain.Athlete;
-import com.example.apiathlete.dto.mapper.AthleteMapper;
 import com.example.apiathlete.repository.AthleteRepository;
 import com.example.apiathlete.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +31,8 @@ public class AthleteService {
         return repository.findAll();
     }
 
-    public Athlete insert(Athlete obj){
-       return repository.save(obj);
+    public void insert(Athlete obj){
+        repository.save(obj);
     }
 
     public void delete(Integer id){

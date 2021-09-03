@@ -1,5 +1,6 @@
 package com.example.apiathlete.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Table(name = "state")
 @Entity
 @Getter
 @Setter
@@ -25,6 +27,7 @@ public class State implements Serializable {
     private String stateName;
     @Column(length = 2, nullable = false)
     private String uf;
+    @JsonIgnore
     @OneToMany(mappedBy = "state")
     private List<City> cities = new ArrayList<>();
     @Override

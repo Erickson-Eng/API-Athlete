@@ -32,9 +32,9 @@ public class EmailService {
         return repository.findAll();
     }
 
-    public Email insert(Email obj){
+    public void insert(Email obj){
         try {
-            return repository.save(obj);
+            repository.save(obj);
         }
         catch (DataIntegrityViolationException e){
             throw new DataIntegrityViolationException("Email invalido");

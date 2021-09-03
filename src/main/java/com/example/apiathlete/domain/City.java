@@ -5,11 +5,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+
+@Table(name = "city")
 @Entity
 @Getter
 @Setter

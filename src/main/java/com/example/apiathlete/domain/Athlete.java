@@ -6,7 +6,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Table(name = "athlete")
 @Entity
 @Getter
 @Setter
