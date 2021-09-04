@@ -26,7 +26,7 @@ public class Address implements Serializable {
     @Column(nullable = false)
     private String cep;
     @JoinColumn
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.ALL})
     private City city;
 
     @Override

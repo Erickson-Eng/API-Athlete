@@ -20,6 +20,6 @@ public class StateDTO {
     @NotEmpty
     @Size(max = 2, min = 2)
     private String uf;
-    private List<CityDTO> cities = new ArrayList<>();
+//    private List<CityDTO> cities = new ArrayList<>();
 
 }

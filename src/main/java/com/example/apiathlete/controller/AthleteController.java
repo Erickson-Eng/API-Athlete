@@ -31,8 +31,8 @@ public class AthleteController {
         return ResponseEntity.created(uri).build();
     }
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Athlete> findById(@PathVariable Integer id){
-        Athlete obj = service.findById(id);
+    public ResponseEntity<AthleteDTO> findById(@PathVariable Integer id){
+        AthleteDTO obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
     @GetMapping
@@ -45,9 +45,9 @@ public class AthleteController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-//    @PutMapping(path = "/{id}")
-//    public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody AthleteDTO obj){
-//        service.replace(id, obj);
-//        return ResponseEntity.noContent().build();
-//    }
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody AthleteDTO obj){
+        service.replace(id, obj);
+        return ResponseEntity.noContent().build();
+    }
 }

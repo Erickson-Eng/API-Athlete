@@ -23,11 +23,10 @@ public class AthleteService {
     private final AthleteMapper mapper;
 
 
-    public Athlete findById(Integer id){
-        Optional<Athlete> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException(
-                "Atleta não encontrado! Id: "+ id + Athlete.class.getName()
-        ));
+    public AthleteDTO findById(Integer id){
+        Athlete obj = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException(
+                "Atleta não encontrado! Id: "+ id + Athlete.class.getName()));
+        return mapper.toDTO(obj);
     }
 
     public List<AthleteDTO> findAll(){
@@ -45,16 +44,16 @@ public class AthleteService {
         repository.deleteById(id);
     }
 
-//    public void replace(Integer id, AthleteDTO obj){
-//        AthleteDTO newObj = findById(id);
-//        updateData(newObj,obj);
-//        Athlete updateAthlete = mapper.toModel(newObj);
-//        repository.save(updateAthlete);
-//    }
-//    private void updateData(AthleteDTO newObj, AthleteDTO obj) {
-//        newObj.setFirstName(obj.getFirstName());
-//        newObj.setLastName(obj.getLastName());
-//        newObj.setHeight(obj.getHeight());
-//        newObj.setWeight(obj.getWeight());
-//    }
+    public void replace(Integer id, AthleteDTO obj){
+        AthleteDTO newObj = findById(id);
+        updateData(newObj,obj);
+        Athlete updateAthlete = mapper.toModel(newObj);
+        repository.save(updateAthlete);
+    }
+    private void updateData(AthleteDTO newObj, AthleteDTO obj) {
+        newObj.setFirstName(obj.getFirstName());
+        newObj.setLastName(obj.getLastName());
+        newObj.setHeight(obj.getHeight());
+        newObj.setWeight(obj.getWeight());
+    }
 }
