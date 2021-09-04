@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -29,8 +30,9 @@ public class AthleteService {
         ));
     }
 
-    public List<Athlete> findAll(){
-        return repository.findAll();
+    public List<AthleteDTO> findAll(){
+        return repository.findAll().stream()
+                .map(mapper::toDTO).collect(Collectors.toList());
     }
 
     public void insert(AthleteDTO obj){
@@ -38,17 +40,18 @@ public class AthleteService {
         repository.save(athlete);
     }
 
-//    public void delete(Integer id){
-//        findById(id);
-//        repository.deleteById(id);
+    public void delete(Integer id){
+        findById(id);
+        repository.deleteById(id);
+    }
+
+//    public void replace(Integer id, AthleteDTO obj){
+//        AthleteDTO newObj = findById(id);
+//        updateData(newObj,obj);
+//        Athlete updateAthlete = mapper.toModel(newObj);
+//        repository.save(updateAthlete);
 //    }
-//
-//    public Athlete update(Integer id, Athlete obj){
-//        Athlete newObj = findById(id);
-//        updateData(newObj, obj);
-//        return repository.save(newObj);
-//    }
-//    private void updateData(Athlete newObj, Athlete obj) {
+//    private void updateData(AthleteDTO newObj, AthleteDTO obj) {
 //        newObj.setFirstName(obj.getFirstName());
 //        newObj.setLastName(obj.getLastName());
 //        newObj.setHeight(obj.getHeight());

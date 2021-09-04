@@ -2,7 +2,6 @@ package com.example.apiathlete.dto.request;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +13,7 @@ import javax.validation.constraints.Size;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProfileDTO {
+public abstract class ProfileDTO {
 
     private Integer id;
     @NotEmpty
@@ -24,12 +23,12 @@ public class ProfileDTO {
     @Size(min = 2, max = 70, message = "O nome deve conter entre 2 a 70 caracteres")
     private String lastName;
 
-//    @Valid
-//    @NotNull
+    @Valid
+    @NotNull
     private EmailDTO email;
 
-//    @Valid
-//    @NotNull
+    @Valid
+    @NotNull
     private AddressDTO address;
 
 }

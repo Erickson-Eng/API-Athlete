@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/athlete")
@@ -35,18 +36,18 @@ public class AthleteController {
         return ResponseEntity.ok().body(obj);
     }
     @GetMapping
-    public ResponseEntity<List<Athlete>> findAll(){
-        List<Athlete> athleteList = service.findAll();
+    public ResponseEntity<List<AthleteDTO>> findAll(){
+        List<AthleteDTO> athleteList = service.findAll();
         return ResponseEntity.ok().body(athleteList);
     }
-//    @DeleteMapping(path = "/{id}")
-//    public ResponseEntity<Void> delete(@PathVariable Integer id){
-//        service.delete(id);
-//        return ResponseEntity.noContent().build();
-//    }
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 //    @PutMapping(path = "/{id}")
-//    public ResponseEntity<Athlete> update(@PathVariable Integer id, @RequestBody Athlete obj){
-//        obj = service.update(id, obj);
-//        return ResponseEntity.ok().body(obj);
+//    public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody AthleteDTO obj){
+//        service.replace(id, obj);
+//        return ResponseEntity.noContent().build();
 //    }
 }
