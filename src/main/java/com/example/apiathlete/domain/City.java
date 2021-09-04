@@ -12,7 +12,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 
-@Table(name = "city")
 @Entity
 @Getter
 @Setter

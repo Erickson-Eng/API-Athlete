@@ -11,27 +11,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AthleteService {
 
-    private AthleteRepository repository;
+    private final AthleteRepository repository;
 
-    public Athlete findById(Integer id){
-        Optional<Athlete> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException(
-                "Atleta não encontrado! Id: "+ id
-        ));
+    private final AthleteMapper mapper;
+
+
+
+    public AthleteDTO findById(Integer id){
+        Athlete obj = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException(
+                "Atleta não encontrado! Id: "+ id + Athlete.class.getName()));
+        return mapper.toDTO(obj);
     }
 
-    public List<Athlete> findAll(){
-        return repository.findAll();
+    public List<AthleteDTO> findAll(){
+        return repository.findAll().stream()
+                .map(mapper::toDTO).collect(Collectors.toList());
     }
 
-    public void insert(Athlete obj){
-        repository.save(obj);
+    public void insert(AthleteDTO obj){
+        Athlete athlete = mapper.toModel(obj);
+        repository.save(athlete);
     }
 
     public void delete(Integer id){
@@ -39,12 +44,13 @@ public class AthleteService {
         repository.deleteById(id);
     }
 
-    public Athlete update(Integer id, Athlete obj){
-        Athlete newObj = findById(id);
-        updateData(newObj, obj);
-        return repository.save(newObj);
+    public void replace(Integer id, AthleteDTO obj){
+        AthleteDTO newObj = findById(id);
+        updateData(newObj,obj);
+        Athlete updateAthlete = mapper.toModel(newObj);
+        repository.save(updateAthlete);
     }
-    private void updateData(Athlete newObj, Athlete obj) {
+    private void updateData(AthleteDTO newObj, AthleteDTO obj) {
         newObj.setFirstName(obj.getFirstName());
         newObj.setLastName(obj.getLastName());
         newObj.setHeight(obj.getHeight());

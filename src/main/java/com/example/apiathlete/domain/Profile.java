@@ -21,10 +21,12 @@ public class Profile implements Serializable {
     private Integer id;
     private String firstName;
     private String lastName;
-    @JoinColumn(unique = true,nullable = false)
+
+    @JoinColumn(unique = true)
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private Email email;
-    @JoinColumn(nullable = false)
+
+    @JoinColumn
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private Address address;
     @Override

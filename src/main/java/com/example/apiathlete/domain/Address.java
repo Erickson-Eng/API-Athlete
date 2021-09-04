@@ -13,7 +13,6 @@ import java.util.Objects;
 
 @Entity
 @Getter
-@Table(name = "address")
 @Setter
 @RequiredArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)

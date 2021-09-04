@@ -1,6 +1,6 @@
 package com.example.apiathlete.controller;
 
-import com.example.apiathlete.domain.Athlete;
+import com.example.apiathlete.dto.request.AthleteDTO;
 import com.example.apiathlete.service.AthleteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/api/v1/athlete")
 public class AthleteController {
 
-    private AthleteService service;
+    private final AthleteService service;
 
     @Autowired
     public AthleteController(AthleteService service) {
@@ -22,20 +22,20 @@ public class AthleteController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody Athlete obj){
+    public ResponseEntity<Void> insert(@RequestBody AthleteDTO obj){
         service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Athlete> findById(@PathVariable Integer id){
-        Athlete obj = service.findById(id);
+    public ResponseEntity<AthleteDTO> findById(@PathVariable Integer id){
+        AthleteDTO obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
     @GetMapping
-    public ResponseEntity<List<Athlete>> findAll(){
-        List<Athlete> athleteList = service.findAll();
+    public ResponseEntity<List<AthleteDTO>> findAll(){
+        List<AthleteDTO> athleteList = service.findAll();
         return ResponseEntity.ok().body(athleteList);
     }
     @DeleteMapping(path = "/{id}")
@@ -44,8 +44,8 @@ public class AthleteController {
         return ResponseEntity.noContent().build();
     }
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Athlete> update(@PathVariable Integer id, @RequestBody Athlete obj){
-        obj = service.update(id, obj);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody AthleteDTO obj){
+        service.replace(id, obj);
+        return ResponseEntity.noContent().build();
     }
 }

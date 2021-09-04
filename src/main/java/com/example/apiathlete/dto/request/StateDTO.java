@@ -1,7 +1,6 @@
 package com.example.apiathlete.dto.request;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class StateDTO {
@@ -22,6 +20,6 @@ public class StateDTO {
     @NotEmpty
     @Size(max = 2, min = 2)
     private String uf;
-    private List<CityDTO> cities = new ArrayList<>();
+//    private List<CityDTO> cities = new ArrayList<>();
 
 }
