@@ -3,6 +3,7 @@ package com.example.apiathlete.dto.mapper;
 import com.example.apiathlete.domain.Address;
 import com.example.apiathlete.dto.request.AddressDTO;
 
+import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,6 +21,7 @@ public abstract class AddressMapper {
         addressDTO.setCep(entity.getCep());
         addressDTO.setCity(cityMapper.toDTO(entity.getCity()));
         return addressDTO;
-    };
+    }
+    @InheritConfiguration
     public abstract Address toModel(AddressDTO dto);
 }

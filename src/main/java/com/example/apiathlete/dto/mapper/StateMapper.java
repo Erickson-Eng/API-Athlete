@@ -2,6 +2,7 @@ package com.example.apiathlete.dto.mapper;
 
 import com.example.apiathlete.domain.State;
 import com.example.apiathlete.dto.request.StateDTO;
+import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
@@ -14,6 +15,7 @@ public abstract class StateMapper {
         stateDTO.setUf(entity.getUf());
         return stateDTO;
     }
+    @InheritConfiguration
     public abstract State toModel(StateDTO dto);
 
 }

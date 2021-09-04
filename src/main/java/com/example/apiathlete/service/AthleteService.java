@@ -22,7 +22,6 @@ public class AthleteService {
     private final AthleteMapper mapper;
 
 
-
     public AthleteDTO findById(Integer id){
         Athlete obj = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException(
                 "Atleta não encontrado! Id: "+ id + Athlete.class.getName()));

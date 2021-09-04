@@ -2,6 +2,7 @@ package com.example.apiathlete.dto.mapper;
 
 import com.example.apiathlete.domain.Athlete;
 import com.example.apiathlete.dto.request.AthleteDTO;
+import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +14,7 @@ public abstract class AthleteMapper {
     private AddressMapper addressMapper;
     @Autowired
     private EmailMapper emailMapper;
-
+    @InheritConfiguration
     public abstract Athlete toModel(AthleteDTO dto);
 
     public  AthleteDTO toDTO(Athlete athlete){

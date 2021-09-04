@@ -3,6 +3,7 @@ package com.example.apiathlete.dto.mapper;
 import com.example.apiathlete.domain.City;
 import com.example.apiathlete.dto.request.CityDTO;
 
+import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +20,7 @@ public abstract class CityMapper {
         cityDTO.setState(stateMapper.toDTO(entity.getState()));
         return cityDTO;
     }
+    @InheritConfiguration
     public abstract City toModel(CityDTO dto);
 
 }
