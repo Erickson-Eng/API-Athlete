@@ -22,11 +22,11 @@ public class Profile implements Serializable {
     private String firstName;
     private String lastName;
 
-    @JoinColumn(unique = true,nullable = true)
+    @JoinColumn(unique = true)
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private Email email;
 
-    @JoinColumn(nullable = true)
+    @JoinColumn
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private Address address;
     @Override

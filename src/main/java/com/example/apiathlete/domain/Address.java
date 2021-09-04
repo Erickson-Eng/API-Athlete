@@ -13,7 +13,6 @@ import java.util.Objects;
 
 @Entity
 @Getter
-@Table(name = "address")
 @Setter
 @RequiredArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
@@ -27,7 +26,7 @@ public class Address implements Serializable {
     @Column(nullable = false)
     private String cep;
     @JoinColumn
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private City city;
 
     @Override
