@@ -2,6 +2,7 @@ package com.example.apiathlete.controller;
 
 import com.example.apiathlete.dto.request.AthleteDTO;
 import com.example.apiathlete.service.AthleteService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,14 +14,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/athlete")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AthleteController {
 
     private final AthleteService service;
 
-    @Autowired
-    public AthleteController(AthleteService service) {
-        this.service = service;
-    }
 
     @PostMapping
     public ResponseEntity<Void> insert(@RequestBody @Valid AthleteDTO obj){
