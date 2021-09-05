@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class AthleteController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody AthleteDTO obj){
+    public ResponseEntity<Void> insert(@RequestBody @Valid AthleteDTO obj){
         service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();

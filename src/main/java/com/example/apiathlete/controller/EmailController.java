@@ -8,13 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 @RestController
 @RequestMapping("/api/v1/email")
 public class EmailController {
 
-    private EmailService service;
+    private final EmailService service;
 
     @Autowired
     public EmailController(EmailService service) {
@@ -22,7 +23,7 @@ public class EmailController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody Email obj){
+    public ResponseEntity<Void> insert(@RequestBody @Valid Email obj){
         service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();

@@ -24,11 +24,9 @@ public abstract class ProfileDTO {
     private String lastName;
 
     @Valid
-    @NotNull
     private EmailDTO email;
 
     @Valid
-    @NotNull
     private AddressDTO address;
 
 }

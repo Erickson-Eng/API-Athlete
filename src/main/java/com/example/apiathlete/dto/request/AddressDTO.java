@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -18,12 +19,12 @@ public class AddressDTO  {
 
     private Integer id;
 
-    @NotEmpty
+    @NotEmpty @NotBlank
     private String streetName;
 
     private String complement;
 
-    @NotEmpty
+    @NotEmpty @NotBlank
     private String cep;
 
     @Valid

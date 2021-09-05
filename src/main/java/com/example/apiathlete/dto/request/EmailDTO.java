@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
@@ -15,8 +16,8 @@ import javax.validation.constraints.NotEmpty;
 public class EmailDTO {
 
     private Integer id;
+    @NotEmpty @NotNull
     @Email(message = "Insira um email valido")
-    @NotEmpty
     private String addressEmail;
 
 }
